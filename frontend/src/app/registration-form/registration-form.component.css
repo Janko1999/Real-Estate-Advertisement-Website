@@ -1,0 +1,63 @@
+#loginBtn{
+    display: flex;
+    justify-self: center;
+}
+
+.button {
+    background-color: rgba(245, 95, 35, 0.966); /* Green */
+    border: none;
+    color: white;
+    /* padding: 5px 12px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-self: center;
+    align-content: center;
+    border-radius: 8px;
+    margin-left: 95px;
+  }
+  .button1 {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    width: 50%;
+  }
+  
+  .clicked {
+    background: rgba(245, 95, 35, 0.966);
+    color: white;
+  }
+  
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+
+  #registerLink{
+      font-size: 14px;
+  }
+  table td{
+      align-content: center;
+      text-align: center;
+     
+      
+  }
+  table{
+      height: 100%;
+  }
+
+  table tr>td{
+      margin-bottom: 75px;
+      padding-bottom: 7px;
+  }
+
+  h2{
+      text-align: center;
+  }
+  #form{
+      height: 500px;
+  }
+  .error{
+      color: red;
+  }
+  

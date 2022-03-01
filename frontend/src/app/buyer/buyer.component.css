@@ -1,0 +1,177 @@
+td,th{
+    text-align: start;
+    column-gap: 15px;
+   
+}
+
+
+
+table tr>td{
+    
+    padding-bottom: 7px;
+    padding-right: 35px;
+    padding-left: 35px;
+    
+}
+
+
+/* table{
+    background-color: #E9DCD3;
+    margin-left:110px ;
+    margin-top: 20px;
+} */
+body{
+    width:100%;
+}
+.container-fluid{
+    width:100%;
+}
+button{
+    background-color: #FFAC2F;
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-self: center;
+    align-content: center;
+    border-radius: 8px;
+    
+    
+}
+.example-card {
+    width: 1010px;
+    margin-bottom: 8px;
+  }
+.osnovnaPretraga{
+    margin-bottom: 20px;
+  
+    margin-top: 20px;
+    width: 80%;
+    margin-bottom: 40px;
+}
+#lokacijaPretraga{
+    width: 80%;
+    margin-bottom: 10px;
+}
+.podaci{
+    background-color:   white;
+}
+.jedan{
+    margin-bottom: 10px;
+}
+
+.naprednaPretraga input{
+    border-radius: 5px;
+}
+
+.naprednaPretragaTabela input[type='checkbox']{
+    margin-bottom: 10px;
+}
+.naprednaPretragaTabela{
+    padding-left: 30px;
+}
+
+.jedan{
+    
+    display: flex;
+    width: 100%; 
+    
+    
+}
+
+.favourites{
+    
+    display: flex;
+    width: 80%; 
+    border: black 1px solid;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    
+  }
+  .modal-content h1{
+    text-align: center;
+}
+.modal-content table{
+    margin-right: 200px;
+}
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .true{
+      display: block;
+  }
+  .false{
+      display: none;
+  }
+
+  
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }

@@ -1,0 +1,364 @@
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-toolbar    class="navbar navbar-expand-lg navbar-light" style="width: 100%; background-color: #E9DCD3;">
+                    <!-- Container wrapper -->
+                    <div class="container-fluid">
+                    <!-- Navbar brand -->
+                    <a  class="navbar-brand" href="#">
+                    <img width="60px" src="../../assets/logo.png" alt=""></a>
+                
+                    
+                
+                    <!-- Collapsible wrapper -->
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                        mdbCollapse
+                        
+                    >
+                        <!-- Left links -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f; font-size: smaller;"(click)='userRequestsFlag()'>Korisnicki Zahtevi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f;; font-size: smaller;"(click)='allUsersFlag()' >Svi korisnici</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f;; font-size: smaller; "(click)='newUserFlag()'>Dodaj novog Korisnika</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f;; font-size: smaller; "(click)='newAgencyFlag()'>Dodaj novu Agenciju</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f;; font-size: smaller; "(click)='newLocationFlag()'>Dodaj novu Mikrolokaciju</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f;font-size: smaller;" (click)='click()'>Promeni Lozinku</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" style=" color: #ffac2f;font-size: smaller; "(click)='logOut()'>Izloguj se</a>
+                        </li>
+                        </ul>
+                        <!-- Left links -->
+                
+                        
+                        
+                    </div>
+                    <!-- Collapsible wrapper -->
+                    </div>
+                    <!-- Container wrapper -->
+                </mat-toolbar>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div *ngIf='userRequestsF'>
+                    <h2>Korisnicki Zahtevi</h2>
+                    <mat-table [dataSource]="userRequests" class="mat-elevation-z8" >
+
+                        <ng-container matColumnDef="Ime i prezime">
+                            <mat-header-cell *matHeaderCellDef> Ime i Prezime </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </mat-cell>
+                          </ng-container>
+                        
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="Korisnicko ime">
+                            <mat-header-cell *matHeaderCellDef> Korisnicko ime </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+                          </ng-container>
+                        
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="Sifra">
+                            <mat-header-cell *matHeaderCellDef> Sifra </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.password}} </mat-cell>
+                          </ng-container>
+                        
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="Email">
+                            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                          </ng-container>
+                          <ng-container matColumnDef="Tip">
+                            <mat-header-cell *matHeaderCellDef> Tip </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.typeString}} </mat-cell>
+                          </ng-container>
+                          <ng-container matColumnDef="Rodjendan">
+                            <mat-header-cell *matHeaderCellDef> Rodjendan </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.birthday}} </mat-cell>
+                          </ng-container>
+                          <ng-container matColumnDef="Grad">
+                            <mat-header-cell *matHeaderCellDef> Grad </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+                          </ng-container>
+                          <ng-container matColumnDef="Prihvati">
+                            <mat-header-cell *matHeaderCellDef> Prihvati </mat-header-cell>
+                            <mat-cell *matCellDef="let element" > <button mat-button (click)="accept(element)">Prihvati</button> </mat-cell>
+                          </ng-container>
+                          <ng-container matColumnDef="Odbij">
+                            <mat-header-cell *matHeaderCellDef> Odbij </mat-header-cell>
+                            <mat-cell *matCellDef="let element" ><button mat-button (click)="reject(element)">Odbij</button> </mat-cell>
+                          </ng-container>
+                        
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                      
+                    </mat-table>
+                    </div>
+                    <div *ngIf='allUsersF'>
+                        <h2>Svi Korisnici</h2>
+                        <mat-table [dataSource]="allUsers" class="mat-elevation-z8" >
+
+                            <ng-container matColumnDef="Ime i prezime">
+                                <mat-header-cell *matHeaderCellDef> Ime i Prezime </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </mat-cell>
+                              </ng-container>
+                            
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="Korisnicko ime">
+                                <mat-header-cell *matHeaderCellDef> Korisnicko ime </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+                              </ng-container>
+                            
+                              <!-- Weight Column -->
+                              <ng-container matColumnDef="Sifra">
+                                <mat-header-cell *matHeaderCellDef> Sifra </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.password}} </mat-cell>
+                              </ng-container>
+                            
+                              <!-- Symbol Column -->
+                              <ng-container matColumnDef="Email">
+                                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Tip">
+                                <mat-header-cell *matHeaderCellDef> Tip </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.typeString}} </mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Rodjendan">
+                                <mat-header-cell *matHeaderCellDef> Rodjendan </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.birthday}} </mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Grad">
+                                <mat-header-cell *matHeaderCellDef> Grad </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Izmeni">
+                                <mat-header-cell *matHeaderCellDef> Izmeni </mat-header-cell>
+                                <mat-cell *matCellDef="let element" > <button mat-button  (click)="update(element)">Izmeni</button></mat-cell>
+                              </ng-container>
+                              <ng-container matColumnDef="Obrisi">
+                                <mat-header-cell *matHeaderCellDef> Obrisi </mat-header-cell>
+                                <mat-cell *matCellDef="let element" ><button mat-button style="background-color:rgba(245, 95, 35, 0.966);"(click)="delete(element)">Obrisi</button></mat-cell>
+                              </ng-container>
+                            
+                              <mat-header-row *matHeaderRowDef="displayedColumnsAllUsers"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: displayedColumnsAllUsers;"></mat-row>
+                          
+                        </mat-table>
+                                
+                    </div>
+                        <div style="margin-left: 360px; margin-top: 50px;"*ngIf='userDetails'>
+                            <app-user-details [user]='selectedUser'></app-user-details>
+
+                        </div>
+                        <div style="margin-left: 420px; margin-top: 50px;" *ngIf='newUserF'>
+                            <h1 style="margin-left: 30px;">Dodaj Novog Korisnika</h1>
+                            <app-registration-form [flag]='false'></app-registration-form>
+                        </div>
+                    <div style="margin-left: 0px; margin-top: 50px; text-align: center;"*ngIf='newAgencyF'>
+                        <h1>Dodaj Novu Agenciju</h1>
+                        <div id="form">
+                            <form >
+                                <table >
+                                    
+                                    <tr>
+                                      
+                                        <td>
+                                            
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Ime</mat-label>
+                                                <input   name="name" [(ngModel)]='name'  matInput/>
+                                              </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        
+                                        <td>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Adresa</mat-label>
+                                                <input   name="address" [(ngModel)]='address'  matInput/>
+                                              </mat-form-field>
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        
+                                        <td>
+                                           
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Grad</mat-label>
+                                                <input  name="city" [(ngModel)]='city'  matInput/>
+                                              </mat-form-field>
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                      
+                                        <td>
+                                            
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Broj Telefona</mat-label>
+                                                <input type="number"  name="phoneNumberA" [(ngModel)]='phoneNumberA'  matInput/>
+                                              </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                       
+                                        <td>
+                                            
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Broj Telefona</mat-label>
+                                                <input type="number"  name="PIB" [(ngModel)]='PIB'  matInput/>
+                                              </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button mat-button (click)='newAgency()'>Dodaj</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{allFields}}</td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+
+                    </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;" *ngIf='newLocationF'>
+                      <h1>Dodaj Novu Mikrolokaciju</h1>  
+                <div id="form1">
+                    <form >
+                        <table >
+                           <tr>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Naziv</mat-label>
+                                        <input  name="mikrolokacija" [(ngModel)]='mikrolokacija' matInput/>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td colspan="2">
+                                    <button mat-button (click)='newMicrolocation()'>Dodaj</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{{allFields}}</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <hr/>
+                <h1>Dodaj Novu Ulicu</h1>
+                <div id="form1">
+                    <form >
+                        <table >
+                            <tr>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Ulica</mat-label>
+                                        <input name="ulica" [(ngModel)]='ulica' matInput/>
+                                      </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button mat-button  (click)='newStreet()'>Dodaj</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{{allFields}}</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The Modal -->
+<div [class.true]='flag' [class.false]='flag2' id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span (click)='spanClick()'class="close">&times;</span>
+      <h1 >Promeni Lozinku</h1>
+      <table >
+           
+        <tr>
+            
+            <td>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Stara Lozinka</mat-label>
+                    <input type="number"  name="oldPassword" [(ngModel)]='oldPassword' matInput/>
+                  </mat-form-field>
+                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{oldPasswordError}}</td>
+        </tr>
+        <tr>
+           
+            <td>
+               
+                <mat-form-field appearance="fill">
+                    <mat-label>Nova Lozinka</mat-label>
+                    <input type="number"  name="newPassword" [(ngModel)]='newPassword' matInput/>
+                  </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{newPasswordError}}</td>
+        </tr>
+        <tr>
+          
+            <td>
+               
+                <mat-form-field appearance="fill">
+                    <mat-label>Ponovi Novu Lozinku</mat-label>
+                    <input type="number"  name="newPasswordAgain" [(ngModel)]='newPasswordAgain' matInput/>
+                  </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{againPasswordError}}</td>
+        </tr>
+       
+    
+        <tr>
+            <td colspan="2">
+                <button (click)='newPass()' mat-button class="button" id="loginBtn">Promeni Lozinku</button>
+            </td>
+        </tr>
+        
+    </table>
+    </div>
+  
+  </div>
+    
+

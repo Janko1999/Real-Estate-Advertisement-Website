@@ -1,0 +1,200 @@
+
+<div id="form">
+    <form >
+        <table >
+            <tr>
+                <td colspan="2">
+                    <section style="margin-bottom:15px">
+                        <button class="button1" id="buyer" (click)='buyer()' [class.clicked]='isBuyer' autofocus >Buyer</button><button [class.clicked]='isSalesman'(click)='salesman()' class="button1" id="salesman">Salesman</button>
+                    </section>
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                   
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ime</mat-label>
+                        <input  name="firstname" [(ngModel)]='firstname' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Prezime</mat-label>
+                        <input name="lastname" [(ngModel)]='lastname'matInput>
+                      </mat-form-field>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+              
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Korisnicko ime</mat-label>
+                        <input  name="username" [(ngModel)]='username' matInput>
+                      </mat-form-field>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{takenUsername}}
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                  
+                    <mat-form-field appearance="fill">
+                        <mat-label>Sifra</mat-label>
+                        <input type="password"  name="password" [(ngModel)]='password' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{passwordError}}
+                </td>
+            </tr>
+            <tr>
+               
+                <td>
+                 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ponovi sifru</mat-label>
+                        <input type="password"   name="confirmPassword" [(ngModel)]='confirmPassword' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{diffPassword}}
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Grad</mat-label>
+                        <mat-select  name="city" [(ngModel)]='city'>
+                          <mat-option *ngFor='let city of cities' value="{{city.name}}">{{city.name}}</mat-option>
+                          
+                        </mat-select>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Rodjendan</mat-label>
+                        <input type="date"  name="birthday" [(ngModel)]='birthday' matInput/>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                  
+                    <mat-form-field appearance="fill">
+                        <mat-label>Telefon</mat-label>
+                        <input type="number" name="phoneNumber" [(ngModel)]='phoneNumber' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+              
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input type="email"  name="email" [(ngModel)]='email' matInput/>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">{{emailError}}</td>
+            </tr>
+            <tr>
+               
+                <td>
+                    <mat-form-field appearance="fill"  >
+                        <mat-label>Agencija</mat-label>
+                        <mat-select [disabled]="isEnabled"   name="agency" [(ngModel)]='agency'>
+                          <mat-option *ngFor='let a of agencies' value={{a.name}}>{{a.name}}</mat-option>
+                          
+                        </mat-select>
+                      </mat-form-field>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Broj Licence</mat-label>
+                        <input [disabled]="isEnabled" type="number" name="licenseNumber" [(ngModel)]='licenseNumber' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+       
+            <tr>
+                <td colspan="2">
+                    <div>
+                        
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Izaberi Sliku</button>
+                        <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="fileInput" accept=".jpg,.png">
+                    </div>
+                    
+                </td>
+            </tr> 
+            <tr>
+                <td colspan="2" class="error">{{imageError}}</td>
+            </tr>
+            <tr>
+            <td colspan="2">
+                
+            
+                <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" (success)="handleSuccess($event)" >
+                </ngx-recaptcha2>
+                
+            </td>
+        </tr>
+            <tr>
+                <td colspan="2">
+                    <button  mat-button (click)='register()' class="button" id="loginBtn">Registruj se</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{allFields}}
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

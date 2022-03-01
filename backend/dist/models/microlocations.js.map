@@ -1,0 +1,1 @@
+{"version":3,"file":"microlocations.js","sourceRoot":"","sources":["../../src/models/microlocations.ts"],"names":[],"mappings":";;;;;AAAA,wDAAgC;AAEhC,MAAM,MAAM,GAAE,kBAAQ,CAAC,MAAM,CAAC;AAE9B,IAAI,aAAa,GAAE,IAAI,MAAM,CAAC;IAC1B,IAAI,EAAC;QACD,IAAI,EAAC,MAAM;KACd;CAEJ,CAAC,CAAC;AAGH,kBAAe,kBAAQ,CAAC,KAAK,CAAC,eAAe,EAAE,aAAa,EAAE,gBAAgB,CAAC,CAAC"}

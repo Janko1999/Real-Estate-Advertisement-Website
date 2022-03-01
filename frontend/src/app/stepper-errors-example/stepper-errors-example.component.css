@@ -1,0 +1,17 @@
+.mat-form-field {
+    margin-top: 16px;
+  }
+  .button {
+    background-color: rgba(245, 95, 35, 0.966);
+    border: none;
+    color: white;
+    /* padding: 5px 12px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 16px; */
+    align-self: center;
+    align-content: center;
+    /* border-radius: 8px; */
+  
+  }

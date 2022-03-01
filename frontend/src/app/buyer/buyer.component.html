@@ -1,0 +1,501 @@
+<div class="container-fluid">
+
+  
+       
+                        
+                   
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-toolbar    class="navbar navbar-expand-lg navbar-light" style="width: 100%;  background-color: #E9DCD3;">
+                <!-- Container wrapper -->
+                <div class="container-fluid">
+                <!-- Navbar brand -->
+                <a  class="navbar-brand"  href="#"><img width="60px" src="../../assets/logo.png" alt=""></a>
+            
+                
+            
+                <!-- Collapsible wrapper -->
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                    mdbCollapse
+                    
+                >
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f;; font-size: smaller; "(click)='dataFlag()' >Oglasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f;; font-size: smaller; " (click)='advancedSearchFlag()'>Napredna Pretraga</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f;; font-size: smaller; " (click)='favouriteAdsFlag()'>Omiljeni Oglasi</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f;; font-size: smaller; " (click)='click()'>Promeni Lozinku</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active orange" aria-current="page" style=" color: #ffac2f; font-size: smaller; " (click)='logOut()'>Izloguj se</a>
+                    </li>
+                    </ul>
+                    <!-- Left links -->
+            
+                    
+                    
+                </div>
+                <!-- Collapsible wrapper -->
+                </div>
+                <!-- Container wrapper -->
+            </mat-toolbar>
+        </div>
+    </div>
+    <!-- тип некретнине (падајућа листа: стан, кућа, викендица, локал, магацин) као
+    обавезно поље;
+     локација (једна или више) у форми града/општине/микро локације, као
+    опционо поље;
+     цена ДО које тражимо (у еврима), као опционо поље;
+     квадратура ОД које тражимо (у m2
+    ), као опционо поље;
+     минималан број соба (од 1, 1.5, 2, 2.5,... до 5+), као опционо поље;  -->
+    <div class="row" *ngIf='basicSearchF'>
+        <div class="col-sm-12" style="display: flex; justify-content: center;">
+            <div class='osnovnaPretraga' >
+                <h1>Pretrazi</h1>
+                
+                <mat-form-field appearance="fill" style="width: 80%; margin-right: 20px;">
+                    <mat-label>Lokacija</mat-label>
+                    <input matInput style="  margin-right: 30px; border-radius: 5px;" name="pretragaLokacija" id="lokacijaPretraga" [(ngModel)]='lokacijaPretraga'>
+                  </mat-form-field>
+                <button mat-button (click)='search()' style="width: 15%; margin-bottom: -150px; ">Pretrazi</button>
+                <br/>
+                
+                <mat-form-field appearance="fill" style="margin-right: 10px;">
+                    <mat-label>Tip</mat-label>
+                    <mat-select name="tipPretraga" [(ngModel)]='tipPretraga' >
+                        <mat-option value="Stan">Stan</mat-option >
+                        <mat-option  value="Kuca">Kuca</mat-option >
+                        <mat-option  value="Vikendica">Vikendica</mat-option >
+                        <mat-option  value="Lokal">Lokal</mat-option >
+                        <mat-option  value="Magacin">Magacin</mat-option >
+                    </mat-select>
+                  </mat-form-field>
+              
+               <mat-form-field appearance="fill" style="margin-right: 10px;">
+                <mat-label>Cena do</mat-label>
+                <input matInput type="number" name="cenaDoPretraga" style="border-radius: 5px; margin-right: 10px;" [(ngModel)]='cenaDoPretraga'>
+                <span matSuffix>€&nbsp;</span>
+            </mat-form-field> 
+               
+               <mat-form-field appearance="fill" style="margin-right: 10px;">
+                <mat-label>Kvadratura od</mat-label>
+                <input type="number" matInput name="kvadraturaOd" style="border-radius: 5px; margin-right: 10px;"[(ngModel)]='kvadraturaOdPretraga'>
+                <span matSuffix>m2&nbsp;</span>
+            </mat-form-field>  
+               
+              <mat-form-field appearance="fill">
+              <mat-label>Minimalan broj soba</mat-label>
+                <input matInput type="number" name="brojSoba" style="border-radius: 5px;"[(ngModel)]='brojSobaPretraga'>
+              </mat-form-field>
+              <span style="color: red;margin-left: 7px;">{{tipError}}</span>
+            </div>
+            
+        </div>
+        
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 podaci" *ngIf='dataF' style="margin-right: 100px; ">
+            <h1 style="font-size: 35px; margin-top: 15px;">Oglasi</h1>
+            <div *ngFor='let ad of ads'  (click)='adDetails(ad)' >
+                <mat-card class="example-card" style="margin-left: 100px;">
+                    <mat-card-title-group>
+                      <mat-card-title>{{ad.naziv}}</mat-card-title>
+                      
+                      <mat-card-subtitle> 
+                        <span style="font-size: larger; font-weight: bolder;">{{ad.city}}-{{ad.state}}-{{ad.microlocation}}</span>
+                        <br/>
+                        Broj soba:  {{ad.sobe}}
+                        <br/>
+                        Sprat: {{ad.sprat}}
+                        </mat-card-subtitle>
+                      <img mat-card-lg-image [src]="ad.imageData[0]" >
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        {{ad.opis}}
+                        
+                               
+                                <div style=" font-size: 25px; display: flex; justify-content: space-between; padding-right: 10px; margin-bottom: 7px;">
+                                    <div style="color: red;">
+                                        <span style="color: black; font-size: small; margin-bottom: 10px;"> Prosecna Cena: {{ad.avgPrice}} EUR/m2</span>
+                                        <br/>
+                                        {{ad.cena}} EUR  
+                                    </div>
+                                    <div>
+                                         {{ad.povrsina}} m2
+                                    </div>
+            
+                               
+                            
+    
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+                
+                
+               
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="row" >
+        <div class="col-sm-12">
+            <div class="advancedSearch" *ngIf='advancedSearchF' style="margin-right: 150px;">
+                <h1>Napredna Pretraga</h1>
+            
+                <mat-form-field appearance="fill" style="width: 70%; margin-left: 80px; margin-right: 30px; ;margin-bottom: 15px;">
+                    <mat-label>Lokacija</mat-label>
+                    <input matInput  name="lokacijaNapredna" id="lokacijaNapredna" [(ngModel)]='lokacijaNapredna'>
+                  </mat-form-field>
+               
+                <mat-form-field appearance="fill">
+                    <mat-label>Tip</mat-label>
+                    <mat-select name="tipPretraga" [(ngModel)]='tipNapredna' >
+                        <mat-option value="Stan">Stan</mat-option>
+                        <mat-option value="Kuca">Kuca</mat-option>
+                        <mat-option value="Vikendica">Vikendica</mat-option>
+                        <mat-option value="Lokal">Lokal</mat-option>
+                        <mat-option value="Magacin">Magacin</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <h2 style="margin-bottom: 30px;">Osnovni podaci</h2>
+                <table class="naprednaPretraga" style="width: 100%; margin-left: 70px; margin-right: 10px;">
+                    <tr>
+                        <td>
+                             <mat-form-field appearance="fill"  style="margin-right: 10px;">
+                                <mat-label>Cena do</mat-label>
+                                <input type="number" matInput name="cenaOdNapredna" [(ngModel)]='cenaOdNapredna'>
+                                <span matSuffix>€&nbsp;</span>
+                              </mat-form-field>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Cena do</mat-label>
+                                <input type="number" matInput  name="cenaDoNapredna" [(ngModel)]='cenaDoNapredna'>
+                                <span matSuffix>€&nbsp;</span>
+                              </mat-form-field></td>
+                        
+                        <td>
+                        <mat-form-field appearance="fill" style="margin-right: 10px;">
+                            <mat-label>Kvadratura od</mat-label>
+                            <input type="number" matInput  name="kvadraturaOdNapredna" [(ngModel)]='kvadraturaOdNapredna'>
+                            <span matSuffix>m2&nbsp;</span>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill">
+                            <mat-label>Kvardatura do</mat-label>
+                            <input type="number" matInput  name="kvadraturaDoNapredna" [(ngModel)]='kvadraturaDoNapredna'>
+                            <span matSuffix>m2&nbsp;</span>
+                          </mat-form-field> </td>
+
+                    </tr>
+                   
+                    <tr >
+                        
+                        
+                        <td >
+                        <mat-form-field appearance="fill" style="margin-right: 10px;">
+                            <mat-label>Broj soba od</mat-label>
+                            <input type="number" matInput   name="brojSobaOdNapredna" [(ngModel)]='brojSobaOdNapredna'>
+                            <span matSuffix>&nbsp;&nbsp;&nbsp;</span>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill">
+                            <mat-label>Broj soba do</mat-label>
+                            <input type="number" matInput  name="brojSobaDoNapredna" [(ngModel)]='brojSobaDoNapredna'>
+                            <span matSuffix>&nbsp;&nbsp;&nbsp;</span>
+                          </mat-form-field> </td>
+                          <td>
+                            <mat-form-field appearance="fill" style="margin-right: 10px;" >
+                                <mat-label>Godina Izgradnje od</mat-label>
+                                <input type="number" matInput  name="godinaIzgradnjeOdNapredna" [(ngModel)]='godinaIzgradnjeOdNapredna'>
+                                <span matSuffix>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </mat-form-field>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Godina izgradnje do</mat-label>
+                                <input type="number" matInput  name="godinaIzgradnjeDoNapredna" [(ngModel)]='godinaIzgradnjeDoNapredna'>
+                                <span matSuffix>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </mat-form-field> </td>
+
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td>
+                             
+                             <mat-form-field appearance="fill" style="margin-right: 10px;">
+                                <mat-label>Sprat od</mat-label>
+                                <input type="number" matInput   name="spratOdNapredna" [(ngModel)]='spratOdNapredna'>
+                                <span matSuffix>&nbsp;&nbsp;&nbsp;</span>
+                              </mat-form-field>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Sprat do</mat-label>
+                                <input type="number" matInput  name="spratDoNapredna" [(ngModel)]='spratDoNapredna'>
+                                <span matSuffix>&nbsp;&nbsp;&nbsp;</span>
+                              </mat-form-field></td>
+                        
+                        <td>
+                        <mat-form-field appearance="fill" style="margin-right: 10px;">
+                            <mat-label>Mesecne rezija od</mat-label>
+                            <input type="number" matInput name="rezijaOdNapredna" [(ngModel)]='rezijeOdNapredna'>
+                            <span matSuffix>&nbsp;&nbsp;&nbsp;&nbsp;€&nbsp;</span>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill">
+                            <mat-label>Mesecne rezija do</mat-label>
+                            <input type="number" matInput name="rezijaDoNapredna" [(ngModel)]="rezijeDoNapredna">
+                            <span matSuffix>&nbsp;&nbsp;&nbsp;&nbsp;€&nbsp;</span>
+                          </mat-form-field> </td>
+
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="4"> </td>
+                    </tr>
+                    </table >
+                    
+                    <h2 style="margin-bottom: 30px;">Napredne opcije</h2>
+                    <table style="width: 100%; margin-left: 180px;" class="naprednaPretragaTabela">
+                    <tr>
+                        <th style="border-right: solid 1px rgb(192, 191, 191); padding-left: 35px;">Oglasivac </th>
+                        <th style="border-right: solid 1px rgb(192, 191, 191); padding-left: 35px;">Stanje</th>
+                        <th style="padding-left: 35px;">Grejanje</th>
+                    </tr>
+                    <tr>
+                        <td style="margin-left: -50px; border-right: solid 1px rgb(192, 191, 191);">
+                            
+                            <mat-checkbox class="example-margin"  name="agencijaNapredna" id="agencijaNapredna" [(ngModel)]='agencijaNapredna' >Agencija</mat-checkbox>
+                            
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"   name="vlasnikNapredna" id="vlasnikNapredna" [(ngModel)]='vlasnikNapredna' >Vlasnik</mat-checkbox>
+                            
+                        </td>
+                        <td style="border-right: solid 1px rgb(192, 191, 191);">
+                            
+                            <mat-checkbox class="example-margin"  name="izvornoStanje" id="izvornoStanje" [(ngModel)]='izvornoStanje' >Izvorno</mat-checkbox>
+                           
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"   name="renoviranoStanje" id="renoviranoStanje" [(ngModel)]='renoviranoStanje' >Renovirano</mat-checkbox>
+                           
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"    name="luxStanje" id="luxStanje" [(ngModel)]='luxStanje'>LUX</mat-checkbox>
+                            
+
+                        </td>
+                        <td >
+                           
+                            <mat-checkbox class="example-margin"   name="CG" id="CG" [(ngModel)]='CG'>CG</mat-checkbox>
+                            
+                            <br/>
+                           
+                            <mat-checkbox class="example-margin"    name="EG" id="EG" [(ngModel)]='EG'>EG</mat-checkbox>
+                            
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"    name="TA" id="TA" [(ngModel)]='TA'>TA</mat-checkbox>
+                            
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"    name="Gas" id="Gas" [(ngModel)]='Gas'>Gas</mat-checkbox>
+                            
+                            <br/>
+                           
+                            <mat-checkbox class="example-margin"   name="Podno" id="Podno" [(ngModel)]='Podno'>Podno</mat-checkbox>
+                            
+                            <br/>
+                            
+                            <mat-checkbox class="example-margin"   name="Toplotne pumpe" id="Toplotne pumpe" [(ngModel)]='toplotnePumpe'>Toplotne pumpe</mat-checkbox>
+                            
+
+                        </td>
+                    </tr>
+                </table>
+                <h2 style="margin-bottom: 30px; ">Karakteristike</h2>
+                <table style="width: 80%; margin-left: 180px;">
+                    <tr>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Terasa" id="Terasa" [(ngModel)]='terasa'>Terasa</mat-checkbox>
+                           </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"   name="Lodja" id="Lodja" [(ngModel)]='lodja'>Lodja</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Balkon" id="Balkon" [(ngModel)]='balkon'>Balkon</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Lift" id="Lift" [(ngModel)]='lift'>Lift</mat-checkbox>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Podrum" id="Podrum" [(ngModel)]='podrum'>Podrum</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Garaza" id="Garaza" [(ngModel)]='garaza'>Garaza</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Basta" id="Basta" [(ngModel)]='basta'>Basta</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"   name="Klima" id="Klima" [(ngModel)]='klima'>Klima</mat-checkbox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Internet" id="Internet" [(ngModel)]='internet'>Internet</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Interfon" id="Interfon" [(ngModel)]='interfon'>Interfon</mat-checkbox>
+                            </td>
+                        <td> 
+                            <mat-checkbox class="example-margin"  name="Telefon" id="Telefon" [(ngModel)]='telefon'>Telefon</mat-checkbox>
+                            </td>
+                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td  style="margin-top: 40px; display: flex; justify-content: center; margin-left: 120px;">
+                            <button mat-button style="width: 130px;" (click)='advancedSearch()'>Pretrazi</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf='detailsF'>
+        <div class="col-sm-12">
+    
+       <app-ad-detail></app-ad-detail>
+    
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 podaci" *ngIf='favouriteAdsF' style=" margin-top: 20px;">
+            <h1 style="font-size: 35px; margin-top: 15px;">Omiljeni Oglasi</h1>
+            <!-- <div>
+                <h2>Omiljeni Oglasi</h2>
+            </div> -->
+            
+            <div *ngFor='let fav of favouriteAds' style=" padding-left:80px; display: flex; justify-content: space-between;"  >
+                <mat-card class="example-card"  (click)='adDetails(fav)'>
+                    <mat-card-title-group>
+                      <mat-card-title>{{fav.naziv}}</mat-card-title>
+                      
+                      <mat-card-subtitle> 
+                        <span style="font-size: larger; font-weight: bolder;">{{fav.city}}-{{fav.state}}-{{fav.microlocation}}</span>
+                        <br/>
+                        Broj soba:  {{fav.sobe}}
+                        <br/>
+                        Sprat: {{fav.sprat}}
+                        <br/>
+                       
+                        </mat-card-subtitle>
+                      <img mat-card-lg-image [src]="fav.imageData[0]" >
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        {{fav.opis}}
+                        
+                        
+                        <div style=" font-size: 25px; display: flex; justify-content: space-between; padding-right: 10px; margin-bottom: 7px;">
+                            <div style="color: red;">
+                               <span style="color: black; font-size: small; margin-bottom: 10px;"> Prosecna Cena: {{fav.avgPrice}} EUR/m2</span>
+                                <br/>
+                                {{fav.cena}} EUR  
+                            </div>
+                            <div>
+                                    {{fav.povrsina}} m2
+                            </div>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+                  
+                  
+                    <div class="example-flex-container">
+                      <div class="example-button-container">
+                        <button (click)='removeFromFavourites(fav)' mat-fab color="warn" style="border-radius: 50px; padding-top: 0px;" aria-label="Example icon button with a delete icon">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  
+                  
+                
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div [class.true]='flag' [class.false]='flag2' id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span (click)='spanClick()'class="close">&times;</span>
+      <h1 >Promeni Lozinku</h1>
+      <table >
+           
+        <tr>
+            
+            <td>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Stara Lozinka</mat-label>
+                    <input type="number"  name="oldPassword" [(ngModel)]='oldPassword' matInput/>
+                  </mat-form-field>
+                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{oldPasswordError}}</td>
+        </tr>
+        <tr>
+           
+            <td>
+               
+                <mat-form-field appearance="fill">
+                    <mat-label>Nova Lozinka</mat-label>
+                    <input type="number"  name="newPassword" [(ngModel)]='newPassword' matInput/>
+                  </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{newPasswordError}}</td>
+        </tr>
+        <tr>
+          
+            <td>
+               
+                <mat-form-field appearance="fill">
+                    <mat-label>Ponovi Novu Lozinku</mat-label>
+                    <input type="number"  name="newPasswordAgain" [(ngModel)]='newPasswordAgain' matInput/>
+                  </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error">{{againPasswordError}}</td>
+        </tr>
+       
+    
+        <tr>
+            <td colspan="2">
+                <button (click)='newPass()' mat-button class="button" id="loginBtn">Promeni Lozinku</button>
+            </td>
+        </tr>
+        
+    </table>
+    </div>
+  
+  </div>
+

@@ -1,0 +1,103 @@
+#loginBtn{
+    display: flex;
+    justify-self: center;
+}
+
+.button {
+    background-color: rgba(245, 95, 35, 0.966);
+    border: none;
+    color: white;
+    /* padding: 5px 12px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-self: center;
+    align-content: center;
+    border-radius: 8px;
+    margin-left: 150px;
+  }
+  .example-card {
+    width: 1010px;
+    margin-bottom: 8px;
+  }
+
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+
+  #registerLink{
+      font-size: 14px;
+      color: rgba(245, 95, 35, 0.966);
+  }
+  table td{
+      align-content: center;
+      text-align: center;
+     
+      
+  }
+
+  h2{
+      text-align: center;
+  }
+  .favourites{
+    
+    display: flex;
+    width: 100%; 
+ 
+    margin-bottom: 10px;
+    margin-top: 15px;
+    
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-left: 100px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  padding-left: 100px;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  height: 1300px;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+.modal-content h1{
+    text-align: center;
+    font-size: larger;
+}
+
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.true{
+    display: block;
+}
+.false{
+    display: none;
+}

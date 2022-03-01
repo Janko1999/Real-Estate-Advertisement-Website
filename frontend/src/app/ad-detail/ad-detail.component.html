@@ -1,0 +1,238 @@
+
+    <div style=" padding:10px; display: flex; justify-content: space-between;">
+        <div>
+            <h2 style="align-self: center;">{{ad.naziv}} </h2>
+        </div>
+        <div style="padding-top: 20px; padding-bottom: 0px;">
+            <h2 style="align-self: center; font-size: 18px; margin-bottom: 0px; ">{{ad.city}}-{{ad.state}}-{{ad.microlocation}}</h2>
+        </div>
+    
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            
+            <ngb-carousel  >
+            <ng-template ngbSlide *ngFor='let image of ad.imageData' >
+               
+                    <div class="d-flex justify-content-center">
+                        <img [src]="image" alt="Random first slide"  style=" height: 45vh;  ">
+                    </div>
+               
+                
+            </ng-template>
+            
+         
+           
+            </ngb-carousel>
+    </div>
+    <div class="col-sm-6" style="margin-top: 15px; ">
+        
+        
+        
+        <mat-card class="example-card">
+            <mat-card-title style="border-bottom: black solid 1px; display: flex; justify-content: space-evenly; margin-bottom: 15px;">
+                <span style="border-right: solid black 1 px; margin-right: 5px;"> Tip: {{ad.tip}}</span>
+               <span  style="border-right: solid black 1 px; margin-right: 5px;"> Kvadratura: {{ad.povrsina}}m2 </span>
+                <span> Soba: {{ad.sobe}} </span>
+                
+            </mat-card-title>
+            
+            <mat-card-content>
+                <table style="width: 100%; height: 100%;">
+                    <tr>
+                        <td>
+                            Oglasivac: {{oglasivac}}
+                        </td>
+                        <td>
+                            Sprat: {{ad.sprat}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Godina Izgradnje: {{ad.godina}}
+                        </td>
+                        <td>
+                            Ukupna Spratnost: {{ad.ukupnoSpratova}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Stanje Nekretnine: {{ad.stanje}}
+                        </td>
+                        <td>
+                            Parking: {{parking}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tip grejanja: {{ad.grejanje}}
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center; font-size: larger;"> 
+                           
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+            <mat-card-actions>
+                Prosecna cena po kvadratu: {{ad.avgPrice}} EUR/m2
+                <p [class.red]='+ad.cena>+ad.povrsina*+ad.avgPrice' [class.green]='+ad.cena<=+ad.povrsina*+ad.avgPrice'style="font-weight: bold; font-size: larger; ">{{ad.cena}} EUR</p>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6" style="margin-top: 15px; ">
+        <mat-card class="example-card">
+            <mat-card-title style="margin-bottom: 15px;">Karakteristike</mat-card-title>
+            
+            <mat-card-content>
+                <table style="width: 100%; ">
+                    <tr>
+                        <td> <input type="checkbox" name="Terasa" id="Terasa" disabled [attr.checked]="ad.terasa ? 'checked' : null">
+                            <label for="Terasa">Terasa</label></td>
+                        <td> <input type="checkbox" name="Lodja" id="Lodja" disabled [attr.checked]="ad.lodja ? 'checked' : null" >
+                            <label for="Lodja">Lodja</label></td>
+                        <td> <input type="checkbox" name="Balkon" id="Balkon"  disabled  [attr.checked]="ad.balkon ? 'checked' : null" >
+                            <label for="Balkon">Balkon</label></td>
+                        <td> <input type="checkbox" name="Lift" id="Lift" disabled  [attr.checked]="ad.lift ? 'checked' : null">
+                            <label for="Lift">Lift</label></td>
+                    </tr>
+                    <tr>
+                        <td> <input type="checkbox" name="Podrum" id="Podrum" disabled [attr.checked]="ad.podrum ? 'checked' : null">
+                            <label for="Podrum">Podrum</label></td>
+                        <td> <input type="checkbox" name="Garaza" id="Garaza" disabled  [attr.checked]="ad.garaza ? 'checked' : null">
+                            <label for="Garaza">Garaza</label></td>
+                        <td> <input type="checkbox" name="Basta" id="Basta" disabled  [attr.checked]="ad.basta ? 'checked' : null">
+                            <label for="Basta">Basta</label></td>
+                        <td> <input type="checkbox" name="Klima" id="Klima" disabled [attr.checked]="ad.klima ? 'checked' : null" >
+                            <label for="Klima">Klima</label></td>
+                    </tr>
+                    <tr>
+                        <td> <input type="checkbox" name="Internet" id="Internet" disabled [attr.checked]="ad.internet ? 'checked' : null">
+                            <label for="Internet">Internet</label></td>
+                        <td> <input type="checkbox" name="Interfon" id="Interfon" disabled  [attr.checked]="ad.interfon ? 'checked' : null">
+                            <label for="Interfon">Interfon</label></td>
+                        <td> <input type="checkbox" name="Telefon" id="Telefon" disabled  [attr.checked]="ad.telefon ? 'checked' : null">
+                            <label for="Telefon">Telefon</label></td>
+                        
+                    </tr>
+                    
+                </table>
+            </mat-card-content>
+           
+          </mat-card>
+        
+    </div>
+    <div class="col-sm-6" style="margin-top: 15px; ">
+      
+        <mat-card class="example-card">
+            <mat-card-title style="margin-bottom: 15px;">Opis</mat-card-title>
+            
+            <mat-card-content>
+              
+                <p>{{ad.opis}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              
+              <button  mat-button (click)='addToFavourites()'>Dodaj u Omiljene</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-12" style="margin-top: 15px; ">
+            <mat-card class="example-card">
+                <mat-card-title style="margin-bottom: 15px;">Kontakt</mat-card-title>
+                
+                <mat-card-content>
+                    <div *ngIf='agencyFlag'>
+                        <div id=   "tab1" >
+                            <table style="width: 100%; font-size: larger; ">
+                                <tr >
+                                    <th>Licni podaci</th>
+                                    <th>Agencija</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ime i prezime: {{user.firstname}} {{user.lastname}}
+                                    </td>
+                                    <td>
+                                        Agencija: {{agency.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Broj Licence: {{user.licenseNumber}}
+                                    </td>
+                                    <td>
+                                        Adresa: {{agency.address}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    
+                                    
+                                    <td>
+                                        Grad: {{agency.city}}
+                                    </td>
+                                    <td>
+                                        PIB: {{agency.PIB}}
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    
+                                    <td >
+                                        
+                                        
+                                            Broj telefona:        <span [class.hidden]='flag==true' > <button (click)='phoneNumber()'>+</button></span><span [class.hidden]='flag==false'>{{user.phoneNumber}}</span>
+                                        
+                                    </td>
+                                  
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div  *ngIf='agencyFlag==false'>
+                        <div id=   "tab1" >
+                            <table style="width: 100%; ">
+                                <tr>
+                                    <td>
+                                        Ime i prezime: {{user.firstname}} {{user.lastname}}
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td >
+                                                Broj telefona:        <span [class.hidden]='flag==true' > <button (click)='phoneNumber()'>+</button></span><span [class.hidden]='flag==false'>{{user.phoneNumber}}</span>
+                                            </td>
+                                            
+                                           
+                                        </tr>
+                                      
+                                        
+                                    
+                            </table>
+                        </div>
+                        
+                    </div>
+                </mat-card-content>
+                
+              </mat-card>
+            
+            
+            
+        </div>
+    </div>
+    
+</div>
+
+<!-- Испод приказа треба да се испише контакт оглашивача, ако је власник некретнине,
+онда име и презиме и број контакт телефона, а уколико је агент, онда назив агенције,
+адреса и град из које је агенција, ПИБ (порески идентификациони број), као и име и
+презиме агента, број лиценце и његов контакт телефон. Контакт телефон оглашивача
+треба да буде сакривен, па тек притиском на неко дугме + да се подаци о контакт
+телефону прикажу („отворе“).  -->

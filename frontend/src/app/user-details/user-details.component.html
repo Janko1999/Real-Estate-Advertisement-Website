@@ -1,0 +1,129 @@
+<div style="text-align: center; margin-left: -400px;">
+    <h1> Izmeni podatke Korisnika</h1>
+</div>
+<div id="form">
+   
+    <form >
+        <table >
+            <tr>
+                
+                <td>
+                   
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ime</mat-label>
+                        <input  name="firstname" [(ngModel)]='user.firstname' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Prezime</mat-label>
+                        <input name="lastname" [(ngModel)]='user.lastname'matInput>
+                      </mat-form-field>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+              
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Korisnicko ime</mat-label>
+                        <input  name="username" [(ngModel)]='user.username' matInput>
+                      </mat-form-field>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{takenUsername}}
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                  
+                    <mat-form-field appearance="fill">
+                        <mat-label>Sifra</mat-label>
+                        <input type="password"  name="password" [(ngModel)]='user.password' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">
+                    {{passwordError}}
+                </td>
+            </tr>
+            
+            <tr>
+                
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Grad</mat-label>
+                        <mat-select  name="city" [(ngModel)]='user.city'>
+                          <mat-option *ngFor='let city of cities' value="{{city.name}}">{{city.name}}</mat-option>
+                          
+                        </mat-select>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Rodjendan</mat-label>
+                        <input type="date"  name="birthday" [(ngModel)]='user.birthday' matInput/>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <td>
+                  
+                    <mat-form-field appearance="fill">
+                        <mat-label>Telefon</mat-label>
+                        <input type="number" name="phoneNumber" [(ngModel)]='user.phoneNumber' matInput>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+              
+                <td>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input type="email"  name="email" [(ngModel)]='user.email' matInput/>
+                      </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error">{{emailError}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button (click)='save()' mat-button class="button" id="loginBtn">Save</button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>

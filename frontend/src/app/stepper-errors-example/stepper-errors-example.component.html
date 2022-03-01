@@ -1,0 +1,41 @@
+<mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Fajl je obavezan.">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Izaberi JSON fajl</ng-template>
+        
+            <button type="button" mat-button style="margin-bottom: 10px;" mat-raised-button (click)="fileInput1.click()">Izaberi Fajl</button>
+            <input hidden style="margin-bottom: 10px;" (change)="onFileChange($event)"  #fileInput1 type="file" id="file1" formControlName="firstCtrl"  required>
+        
+        <div>
+          
+          <button class="button" mat-button  matStepperNext>Dalje</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Slike su obavezne.">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Izaberi Slike</ng-template>
+       
+            
+        <button mat-button type="button"  style="margin-bottom: 10px;" mat-raised-button (click)="fileInput.click()">Izaberi Slike</button>
+        <input hidden multiple="" (change)="onImageChange($event)" #fileInput type="file" id="file" accept=".jpg,.png" formControlName="secondCtrl" required>
+                <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;">
+               
+          
+        
+        <div>
+          
+          <button  mat-button matStepperPrevious>Nazad</button>
+          <button class="button" mat-button matStepperNext>Dalje</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel></ng-template>
+      <p>To je to!</p>
+      <div>
+        <button mat-button matStepperPrevious>Nazad</button>
+        <button class="button" mat-button (click)="submit()">Dodaj</button>
+      </div>
+    </mat-step>
+  </mat-stepper>

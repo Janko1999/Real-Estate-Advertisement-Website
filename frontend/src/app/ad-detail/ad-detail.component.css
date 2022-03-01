@@ -1,0 +1,159 @@
+#tabs {
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  #tabs li {
+    float: left;
+    margin: 0 .5em 0 0;
+  }
+  
+  #tabs a {
+    position: relative;
+    background: #ddd;
+    background-color: #FFAC2F;
+    padding: .7em 3.5em;
+    float: left;
+    text-decoration: none;
+    color: #444;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    border-radius: 5px 0 0 0;
+    box-shadow: 0 2px 2px rgba(0,0,0,.4);
+  }
+  
+  #tabs a:hover,
+  #tabs a:hover::after,
+  #tabs a:focus,
+  #tabs a:focus::after {
+    background: #fff;
+  }
+  
+  #tabs a:focus {
+    outline: 0;
+  }
+  
+  #tabs a::after {
+    content:'';
+    position:absolute;
+    z-index: 1;
+    top: 0;
+    right: -.5em;
+    bottom: 0;
+    width: 1em;
+    background: #E9DCD3;
+    background-image: linear-gradient(to bottom, #fff, #ddd);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+    transform: skew(10deg);
+    border-radius: 0 5px 0 0;
+  }
+  
+  #tabs #current a,
+  #tabs #current a::after {
+    background: #E9DCD3;
+    z-index: 3;
+  }
+  
+  #content {
+    background: #E9DCD3;
+    padding: 2em;
+    height: 220px;
+    width: 400px;
+    position: relative;
+    z-index: 2;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+  }
+
+.picsum-img-wrapper{
+    width: 1470px;
+}
+button{
+    background-color: rgba(245, 95, 35, 0.966);
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    align-self: center;
+    align-content: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    
+    
+}
+
+table tr>td{
+  /* margin-bottom: 75px; */
+  padding-bottom: 25px;
+}
+
+.green{
+color: green;
+}
+
+.red{
+color: red;
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.hidden{
+  display: none;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

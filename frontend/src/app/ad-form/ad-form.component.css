@@ -1,0 +1,18 @@
+button{
+    background-color: #FFAC2F;
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-self: center;
+    align-content: center;
+    border-radius: 8px;
+    
+    
+}
+table td{
+    margin-left: 15px;
+}
